@@ -119,57 +119,50 @@ export default function DialBlock(props: any) {
 
   const minuteDial = (
     <>
-      {data.map((d: any, index: number) => {
-        return (
-          <>
-            {[0, 1, 2, 3, 4].map((number: number) => (
+      {[...Array(60)].map((_: any, index: number) => (
+        <View
+          key={index}
+          style={{
+            transform: [{rotate: `${(360 / 60) * index}deg`}],
+            width: 0,
+            height: 0,
+            position: 'absolute',
+            backgroundColor: 'red',
+          }}>
+          <View
+            style={{
+              position: 'absolute',
+              left: 0,
+              bottom: 0,
+              height: width * 0.38,
+              width: 1,
+            }}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => props.setMinutes(index)}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: -minuteTouchSize / 2,
+                width: minuteTouchSize,
+                height: touchSize * 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
               <View
-                key={index * 5 + number}
                 style={{
-                  transform: [
-                    {rotate: `${(360 / 60) * (index * 5 + number)}deg`},
-                  ],
-                  width: 0,
-                  height: 0,
+                  height: index % 5 === 0 ? width * 0.02 : width * 0.01,
+                  width: width * 0.01,
+                  borderRadius: width * 0.01,
+                  backgroundColor: index % 5 === 0 ? colors.white : colors.text,
                   position: 'absolute',
-                }}>
-                <View
-                  style={{
-                    position: 'absolute',
-                    left: 0,
-                    bottom: 0,
-                    height: width * 0.38,
-                    width: 1,
-                  }}>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => props.setMinutes(d * 5 + number)}
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: -minuteTouchSize / 2,
-                      width: minuteTouchSize,
-                      height: touchSize * 2,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <View
-                      style={{
-                        width: 2,
-                        height: 2,
-                        backgroundColor:
-                          number === 0 ? colors.white : colors.text,
-                        position: 'absolute',
-                        top: touchSize / 2,
-                      }}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            ))}
-          </>
-        );
-      })}
+                  top: touchSize / 3,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      ))}
       <View
         style={{
           transform: [{rotate: `${(360 / 60) * props.minutes}deg`}],
