@@ -36,4 +36,14 @@ export default StyleSheet.create({
     backgroundColor: colors.text,
     borderRadius: 100,
   },
+
+  dialBlock: {
+    width: '100%',
+    aspectRatio: 1,
+    backgroundColor: colors.card,
+    borderRadius: width,
+    marginTop: '5%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
