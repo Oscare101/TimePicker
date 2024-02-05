@@ -98,4 +98,8 @@ export interface TimePickerProps {
   onSetMinutes?: any;
   onCancel?: any;
   onConfirm?: any;
+  confirmButtonStyles?: any;
+  cancelButtonStyles?: any;
+  confirmButtonTitle?: string;
+  cancelButtonTitle?: string;
 }

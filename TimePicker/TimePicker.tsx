@@ -4,6 +4,7 @@ import TimeHeader from './components/TimeHeader';
 import {useEffect, useState} from 'react';
 import DialBlock from './components/DialBlock';
 import {TimePickerProps} from './constants/interfaces';
+import ButtonsBlock from './components/ButtonsBlock';
 
 export default function TimePicker(props: TimePickerProps) {
   const [hours, setHours] = useState<number>(
@@ -56,6 +57,14 @@ export default function TimePicker(props: TimePickerProps) {
         dialHourTitleActiveStyles={props.dialHourTitleActiveStyles}
         activecolors={props.activecolors}
         minuteDotColor={props.minuteDotColor}
+      />
+      <ButtonsBlock
+        confirmButtonStyles={props.confirmButtonStyles}
+        cancelButtonStyles={props.cancelButtonStyles}
+        confirmButtonTitle={props.confirmButtonTitle}
+        cancelButtonTitle={props.cancelButtonTitle}
+        onConfirm={props.onConfirm}
+        onCancel={props.onCancel}
       />
     </View>
   );

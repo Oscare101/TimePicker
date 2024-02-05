@@ -6,4 +6,5 @@ export default {
   cancel: '#999999',
   white: '#FFFFFF',
   text: '#aaaaaa',
+  confirm: '#FFFFFF',
 };

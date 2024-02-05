@@ -46,4 +46,28 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  buttonsBlock: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  bottomButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: width * 0.03,
+    paddingHorizontal: '5%',
+  },
+  cancelButton: {
+    fontSize: width * 0.05,
+    color: colors.cancel,
+    alignSelf: 'flex-start',
+  },
+  confirmButton: {
+    fontSize: width * 0.05,
+    color: colors.confirm,
+    alignSelf: 'flex-end',
+  },
 });

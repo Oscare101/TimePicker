@@ -18,6 +18,10 @@ export default function App() {
         minuteDotColor="#aaa"
         onSetHours={(value: number) => console.log(value)}
         onSetMinutes={(value: number) => console.log(value)}
+        confirmButtonTitle="Зберегти"
+        cancelButtonTitle="Відміна"
+        confirmButtonStyles={{color: '#FFF'}}
+        cancelButtonStyles={{color: '#ff555590'}}
       />
     </View>
   );
