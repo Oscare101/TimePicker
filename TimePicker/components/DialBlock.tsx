@@ -20,6 +20,12 @@ export default function DialBlock(props: any) {
   const arrowLength = width * 0.3;
   const arrowWidth = width * 0.01;
 
+  const gradientColors = props.activecolors
+    ? props.activecolors.length > 1
+      ? props.activecolors
+      : [...props.activecolors, ...props.activecolors]
+    : [colors.color1, colors.color2];
+
   const hourDial = (
     <>
       {data.map((d: any, index: number) => (
@@ -58,19 +64,27 @@ export default function DialBlock(props: any) {
                 <LinearGradient
                   start={{x: 0, y: 0}}
                   end={{x: 1, y: 0}}
-                  colors={[colors.color1, colors.color2]}
+                  colors={gradientColors}
                   style={{
                     flex: 1,
                     width: '100%',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <Text style={{fontSize: fontSize, color: colors.white}}>
+                  <Text
+                    style={[
+                      {fontSize: fontSize, color: colors.white},
+                      {...props.dialHourTitleActiveStyles},
+                    ]}>
                     {d}
                   </Text>
                 </LinearGradient>
               ) : (
-                <Text style={{fontSize: fontSize, color: colors.text}}>
+                <Text
+                  style={[
+                    {fontSize: fontSize, color: colors.white},
+                    {...props.dialHourTitleStyles},
+                  ]}>
                   {d}
                 </Text>
               )}
@@ -94,19 +108,27 @@ export default function DialBlock(props: any) {
                 <LinearGradient
                   start={{x: 0, y: 0}}
                   end={{x: 1, y: 0}}
-                  colors={[colors.color1, colors.color2]}
+                  colors={gradientColors}
                   style={{
                     flex: 1,
                     width: '100%',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <Text style={{fontSize: fontSize, color: colors.white}}>
+                  <Text
+                    style={[
+                      {fontSize: fontSize, color: colors.white},
+                      {...props.dialHourTitleActiveStyles},
+                    ]}>
                     {d + 12}
                   </Text>
                 </LinearGradient>
               ) : (
-                <Text style={{fontSize: fontSize, color: colors.text}}>
+                <Text
+                  style={[
+                    {fontSize: fontSize, color: colors.white},
+                    {...props.dialHourTitleStyles},
+                  ]}>
                   {d + 12}
                 </Text>
               )}
@@ -154,7 +176,7 @@ export default function DialBlock(props: any) {
                   height: index % 5 === 0 ? width * 0.02 : width * 0.01,
                   width: width * 0.01,
                   borderRadius: width * 0.01,
-                  backgroundColor: index % 5 === 0 ? colors.white : colors.text,
+                  backgroundColor: props.minuteDotColor || colors.text,
                   position: 'absolute',
                   top: touchSize / 3,
                 }}
@@ -173,7 +195,7 @@ export default function DialBlock(props: any) {
         <LinearGradient
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
-          colors={[colors.color1, colors.color2]}
+          colors={gradientColors}
           style={{
             position: 'absolute',
             bottom: 0,
@@ -189,7 +211,7 @@ export default function DialBlock(props: any) {
   );
 
   return (
-    <View style={styles.dialBlock}>
+    <View style={[styles.dialBlock, {...props.dialStyles}]}>
       {props.active === 'hour' ? hourDial : minuteDial}
     </View>
   );
