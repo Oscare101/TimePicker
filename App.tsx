@@ -22,6 +22,8 @@ export default function App() {
         cancelButtonTitle="Відміна"
         confirmButtonStyles={{color: '#FFF'}}
         cancelButtonStyles={{color: '#ff555590'}}
+        onCancel={() => console.log('cancel')}
+        onConfirm={(value: string) => console.log(value)}
       />
     </View>
   );

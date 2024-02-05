@@ -63,7 +63,7 @@ export default function TimePicker(props: TimePickerProps) {
         cancelButtonStyles={props.cancelButtonStyles}
         confirmButtonTitle={props.confirmButtonTitle}
         cancelButtonTitle={props.cancelButtonTitle}
-        onConfirm={props.onConfirm}
+        onConfirm={() => props.onConfirm(hours + ':' + minutes)}
         onCancel={props.onCancel}
       />
     </View>

@@ -1,79 +1,99 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Time Picker
 
-# Getting Started
+Bare React Native time picker
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### Example of components with default properties
 
-## Step 1: Start the Metro Server
+![example](./screenshots/example1.jpg) ![example](./screenshots/example2.jpg)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+```tsx
+import TimePicker from './TimePicker/TimePicker';
 
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+<TimePicker />;
 ```
 
-## Step 2: Start your Application
+### Usage
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Requires `@react-native-masked-view/masked-view` and `react-native-linear-gradient`
 
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```
+npm i @react-native-masked-view/masked-view
+npm i react-native-linear-gradient
 ```
 
-### For iOS
+Can be used in Expo project with `@react-native-masked-view/masked-view` and `expo-linear-gradient`
 
-```bash
-# using npm
-npm run ios
+Copy ./TimePicker directory and prepare it for usage
 
-# OR using Yarn
-yarn ios
+```
+npm i @react-native-masked-view/masked-view
+npm i expo-linear-gradient
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+and replace library in `./components/GradientText.tsx`,`./components/DialBlock.tsx` and `./components/TimeHeader.tsx`
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```
+- import LinearGradient from 'react-native-linear-gradient';
 
-## Step 3: Modifying your App
++ import LinearGradient from 'expo-linear-gradient';
+```
 
-Now that you have successfully run the app, let's modify it.
+### Properties
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+| Property                  | Type               | Description                                                          |
+| ------------------------- | ------------------ | -------------------------------------------------------------------- |
+| initialHours              | number             | Initial hours. Use 0-23 range                                        |
+| initialMinutes            | number             | Initial minutes. Use 0-59 range                                      |
+| containerStyles           | Object             | Styles that will be propagated to the container                      |
+| dialStyles                | Object             | Styles that will be propagated to the container of the dial          |
+| timeCardStyles            | Object             | Styles that will be propagated to the time card in header            |
+| timeTitleStyles           | Object             | Styles that will be propagated to the time title in header           |
+| activecolors              | string[]           | Colors that will appear to gradient to actice in dial and header     |
+| timeDotColor              | string             | Colors that will appear to dots in header                            |
+| dialHourTitleStyles       | Object             | Styles that will be propagated to inactive hour titles in hour dial  |
+| dialHourTitleActiveStyles | Object             | Styles that will be propagated to the active hour title in hour dial |
+| minuteDotColor            | string             | Colors that will appear to dots in minutes dial                      |
+| onSetHours                | function => string | Function after every hours change. Return HH                         |
+| onSetMinutes              | function => string | Function after every minutes change. Return MM                       |
+| onCancel                  | function => ()     | Function after cancel button pressesd. Return nothing                |
+| onConfirm                 | function => string | Function after confirm button pressesd. Returns HH:MM                |
+| confirmButtonStyles       | Object             | Styles that will be propagated to the confirm button                 |
+| cancelButtonStyles        | Object             | Styles that will be propagated to the cancel button                  |
+| confirmButtonTitle        | string             | Text for confirm button                                              |
+| cancelButtonTitle         | string             | Text for cancel button                                               |
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+### Initial values
 
-## Congratulations! :tada:
+Initially selected hours and minutes
 
-You've successfully run and modified your React Native App. :partying_face:
+```tsx
+<TimePicker initialHours={12} initialMinutes={53} />
+```
 
-### Now what?
+### Example of using all styles properties
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+![example](./screenshots/example3.jpg) ![example](./screenshots/example4.jpg)
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```tsx
+<TimePicker
+  initialHours={12}
+  initialMinutes={53}
+  containerStyles={{backgroundColor: '#aaa'}}
+  timeCardStyles={{backgroundColor: '#fff'}}
+  timeTitleStyles={{fontWeight: '100'}}
+  timeDotColor="#FFF"
+  dialStyles={{backgroundColor: '#fff'}}
+  dialHourTitleStyles={{color: '#000', fontWeight: '100'}}
+  dialHourTitleActiveStyles={{color: '#fff', fontWeight: '300'}}
+  activecolors={['#ff5555']}
+  minuteDotColor="#aaa"
+  onSetHours={(value: number) => console.log(value)}
+  onSetMinutes={(value: number) => console.log(value)}
+  confirmButtonTitle="Зберегти"
+  cancelButtonTitle="Відміна"
+  confirmButtonStyles={{color: '#FFF'}}
+  cancelButtonStyles={{color: '#ff555590'}}
+  onCancel={() => console.log('cancel')}
+  onConfirm={(value: string) => console.log(value)}
+/>
+```
